@@ -149,6 +149,12 @@ static inline cpVect cpvnormalize(const cpVect v)
 	return cpvmult(v, 1.0f/(cpvlength(v) + CPFLOAT_MIN));
 }
 
+static inline cpVect cpvreflect(const cpVect d, const cpVect n)
+{
+    return cpvsub(d, cpvmult(n, 2*cpvdot(d, n)));
+}
+
+
 /// Spherical linearly interpolate between v1 and v2.
 static inline cpVect
 cpvslerp(const cpVect v1, const cpVect v2, const cpFloat t)

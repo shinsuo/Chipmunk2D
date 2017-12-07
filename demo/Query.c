@@ -49,7 +49,11 @@ update(cpSpace *space, double dt)
 		ChipmunkDebugDrawSegment(cpvlerp(start, end, segInfo.alpha), end, RGBAColor(0,0,1,1));
 		
 		// Draw a little red surface normal
-		ChipmunkDebugDrawSegment(point, cpvadd(point, cpvmult(n, 16)), RGBAColor(1,0,0,1));
+        cpVect center = cpvadd(point,cpvmult(n, radius));
+		ChipmunkDebugDrawSegment(center, cpvadd(center, cpvmult(n, 16)), RGBAColor(1,0,0,1));
+        
+        cpVect direction = cpvsub(end, start);
+        ChipmunkDebugDrawSegment(center, cpvadd(center, cpvreflect(direction, n)), RGBAColor(1,0,0,1));
 		
 		// Draw a little red dot on the hit point.
 		ChipmunkDebugDrawDot(3, point, RGBAColor(1,0,0,1));
